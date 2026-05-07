@@ -190,6 +190,14 @@ Capture every internal step (which LLM call, which tool, what result). Lets you 
 
 LLM caches the prefix of a prompt; on repeat, only the new suffix is billed at full price (Anthropic 90% off cached, OpenAI 50% off). Long-context repeated queries save a lot.
 
+### Streaming
+
+LLM returns tokens as they're generated (one at a time) instead of waiting for the full response. Better UX (looks like typing); technically uses SSE or chunked transfer. **Default for production interactive apps**. Trade-offs: client must handle partial responses; ReAct tool-call parsing waits for stream end.
+
+### Batch API
+
+Bundle a large number of LLM requests for delayed (≤24h) processing. **Typically 50% off (Anthropic, OpenAI)**. Good for non-interactive: batch summarization, batch classification, eval suites, ETL pipelines. **Don't use for interactive chat** — latency unacceptable.
+
 ### Token Cost / Inference Cost
 
 Per LLM call: input tokens × input price + output tokens × output price. Costs of an agent's ReAct loop add up fast — a single grep over a large codebase can run 100k tokens.

@@ -710,6 +710,19 @@
 
 > ⚠️ **Maintainer's own projects** (same as §13): delegation skills the maintainer extracted from daily workflow. Star floor is relaxed; criterion is "the Claude-planner + Codex/Gemini-executor combo runs reliably". Multi-LLM space evolves quickly — evaluate alongside the multi-agent frameworks listed in Stage 7 before adopting.
 
+### How the three skills compose
+
+The 3 skills below are **designed to be used together**, not as standalone tools:
+
+```
+                       ┌─ codex-delegate     →  code-heavy work
+Claude (planner +      ├─ gemini-delegate    →  long-form / CJK / 1M context
+        reviewer)      └─ agent-collab-skills →  splitter + reconciler + acceptance gate
+                                                 (when running 2+ delegates in parallel)
+```
+
+Claude is bad at token-heavy mechanical work (cost, context blowout); Codex is bad at conversational coordination; Gemini's 1M context is great but mid-tier reasoning. **Division of labor: Claude handles design / review, Codex handles implementation, Gemini handles long-form drafting / synthesis.**
+
 ### [WenyuChiou/codex-delegate](https://github.com/WenyuChiou/codex-delegate) ⭐⭐⭐⭐⭐
 
 | Field | Value |
@@ -718,9 +731,11 @@
 | License | MIT |
 | Rating | ⭐⭐⭐⭐⭐ |
 
-**What it does**: Claude Code skill for using Codex CLI as an execution specialist — multi-file refactors, boilerplate generation, implementation-heavy tasks. Claude plans + reviews; Codex executes.
-**Audience**: developers who want to delegate implementation work from Claude Code to Codex automatically.
-**Notes**: pairs with `gemini-delegate-skill` (one for code-heavy, one for long-form / CJK). A practical implementation of the Stage 7 multi-agent concept.
+**What it does**: Claude Code skill that uses Codex CLI as the execution specialist — multi-file refactors, batch edits, boilerplate generation, wrapper-based implementation tasks. Claude writes the plan + reviews; Codex executes.
+**Audience**: developers wanting to save tokens / accelerate large-scale mechanical edits; learners who want to verify "multi-agent isn't just a buzzword".
+**Use it for**: refactoring 30+ files, generating test scaffolds, porting the same pattern across N files, writing migration scripts.
+**Don't use for**: architecture decisions, bug diagnosis, security review, tasks needing conversation memory — Claude does these better directly.
+**Notes**: pairs with `gemini-delegate-skill`. Practical implementation of the Stage 7 multi-agent concept.
 
 ### [WenyuChiou/gemini-delegate-skill](https://github.com/WenyuChiou/gemini-delegate-skill) ⭐⭐⭐⭐
 
@@ -730,9 +745,11 @@
 | License | MIT |
 | Rating | ⭐⭐⭐⭐ |
 
-**What it does**: Claude Code skill for using Gemini CLI for large-context synthesis, English / zh-TW / CJK long-form drafting, and second-opinion review.
-**Audience**: people writing long form, doing cross-language drafts, or needing a second-opinion review — researchers writing papers / Chinese reports especially.
-**Notes**: complements codex-delegate — "Codex for code, Gemini for prose" division of labor.
+**What it does**: Claude Code skill that uses Gemini CLI as the long-form / large-context / CJK executor — 1M-token context window, Chinese long-form drafting, second-opinion review. Claude provides the outline and critique; Gemini writes the long form.
+**Audience**: researchers writing papers, knowledge workers writing Chinese reports / Threads posts, people who want a second LLM's perspective for cross-checking.
+**Use it for**: long-form drafts (>3000 words), cross-document synthesis (stuffing many long docs into the 1M-token context), Chinese / CJK content, LLM-vs-LLM comparison views.
+**Don't use for**: short queries, code generation (use codex), production-critical decisions (final human review).
+**Notes**: pairs with `codex-delegate` for the "Codex writes code, Gemini writes prose" split.
 
 ### [WenyuChiou/agent-collab-skills](https://github.com/WenyuChiou/agent-collab-skills) ⭐⭐
 

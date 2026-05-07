@@ -710,6 +710,19 @@
 
 > ⚠️ **maintainer 自家專案區**：跟 §13 一樣，以下是維護者把自己 daily workflow 抽出來公開的 delegation skills。star 門檻放寬，選收標準是「真的能讓 Claude planner + Codex/Gemini 執行者組合穩定跑下去」。Multi-LLM 領域變化快，建議跟其他 multi-agent framework（Stage 7 列的）一起評估後再選。
 
+### 三個 skill 的組合（composition）
+
+底下 3 個 skill 是**設計成一起用**的，不是獨立工具：
+
+```
+                    ┌─ codex-delegate     →  跑 code-heavy
+Claude（planner +   ├─ gemini-delegate    →  跑 long-form / CJK / 1M 長 context
+        reviewer）  └─ agent-collab-skills →  splitter + reconciler + acceptance gate
+                                              （多個 delegate 平行跑時用）
+```
+
+Claude 不擅長 token-heavy 機械式工作（成本高、context 容易爆）；Codex 不擅長對話協作；Gemini 1M context 但中型推理稍弱。**分工 = Claude 負責 design / review、Codex 負責 implement、Gemini 負責 long-form draft / synthesis**。
+
 ### [WenyuChiou/codex-delegate](https://github.com/WenyuChiou/codex-delegate) ⭐⭐⭐⭐⭐
 
 | 欄位 | 內容 |
@@ -718,9 +731,11 @@
 | License | MIT |
 | 推薦度 | ⭐⭐⭐⭐⭐ |
 
-**教什麼**：Claude Code skill 把 Codex CLI 當作 execution specialist——適合大量檔案 refactor、boilerplate 生成、實作密集任務。Claude 規劃 + review，Codex 執行。
-**適合誰**：要在 Claude Code 內把實作工作自動 delegate 給 Codex 的開發者。
-**備註**：搭配 `gemini-delegate-skill` 用（一個跑 code-heavy、一個跑 long-form / CJK）。Stage 7 multi-agent 概念實戰版。
+**教什麼**：Claude Code skill 把 Codex CLI 當 execution specialist——大量檔案 refactor、batch edits、boilerplate 生成、wrapper-based 實作密集任務。Claude 寫 plan + review，Codex 執行。
+**適合誰**：要省 token / 提速大規模機械式編輯的開發者；想驗證「multi-agent 不只是 buzzword」的學習者。
+**何時用**：refactor 30+ files、生成 test scaffold、port 同樣 pattern 到 N 個檔案、寫 migration script。
+**何時不用**：架構決策、bug 診斷、security review、需要 conversation memory 的任務——這些 Claude 直接做更好。
+**備註**：跟 `gemini-delegate-skill` 互補。Stage 7 multi-agent 的實戰版。
 
 ### [WenyuChiou/gemini-delegate-skill](https://github.com/WenyuChiou/gemini-delegate-skill) ⭐⭐⭐⭐
 
@@ -730,9 +745,11 @@
 | License | MIT |
 | 推薦度 | ⭐⭐⭐⭐ |
 
-**教什麼**：Claude Code skill 把 Gemini CLI 當作 large-context synthesis、英文 / zh-TW / CJK long-form drafting、second-opinion review 的執行者。
-**適合誰**：寫長文、跨語言 draft、需要第二意見 review 的人——研究者寫 paper / 中文報告場景特別合適。
-**備註**：跟 codex-delegate 互補——「Codex 寫 code、Gemini 寫 prose」分工。
+**教什麼**：Claude Code skill 把 Gemini CLI 當 long-form / large-context / CJK 執行者——百萬 token context window、中文長文 draft、second-opinion review。Claude 出大綱跟 critique，Gemini 寫長文。
+**適合誰**：研究者寫 paper、知識工作者寫中文報告 / Threads post、需要第二 LLM 意見對照的人。
+**何時用**：長文 draft（>3000 字）、跨多份長文件 synthesis（要塞進 1M token 的 context）、中文 / CJK 內容、要 LLM-vs-LLM 對比視角。
+**何時不用**：短查詢、code generation（用 codex）、production-critical 決策（最終人類 review）。
+**備註**：跟 `codex-delegate` 是「Codex 寫 code、Gemini 寫 prose」的分工。
 
 ### [WenyuChiou/agent-collab-skills](https://github.com/WenyuChiou/agent-collab-skills) ⭐⭐
 
