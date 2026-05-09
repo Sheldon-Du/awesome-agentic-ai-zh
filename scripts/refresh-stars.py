@@ -118,6 +118,8 @@ def main():
                         help="只列出星數差距百分比超過此值的 entry（預設 10）")
     parser.add_argument("--check", action="store_true",
                         help="若有任何 entry 過時則退出 code 1")
+    parser.add_argument("--show-missing", action="store_true",
+                        help="列出所有有 URL 但沒附 stars 的 entry（用來盤點哪些該補 stars）")
     args = parser.parse_args()
 
     # 找所有 GitHub repo + 它在每個檔案中的標註 stars
@@ -227,6 +229,24 @@ def main():
             for fp, _, line_no, _ in entries[repo]:
                 rel = fp.relative_to(REPO_ROOT)
                 print(f"    {rel}:{line_no}")
+
+    if args.show_missing and missing:
+        print()
+        print("=== URLs without stars (could be article / docs / org / curated repo) ===")
+        # Group by repo so we don't print the same repo 5 times
+        by_repo: dict[str, list[tuple[Path, int]]] = {}
+        for repo, fp, line_no in missing:
+            by_repo.setdefault(repo, []).append((fp, line_no))
+        for repo in sorted(by_repo):
+            latest = actual.get(repo)
+            star_str = f"★{fmt_stars(latest)}" if latest is not None else "(404)"
+            occs = by_repo[repo]
+            print(f"  {repo}  {star_str}  ({len(occs)} occurrence(s))")
+            for fp, ln in occs[:3]:
+                rel = fp.relative_to(REPO_ROOT)
+                print(f"    {rel}:{ln}")
+            if len(occs) > 3:
+                print(f"    ... +{len(occs) - 3} more")
 
     if args.check and (drift or not_found):
         # CI 模式：只有 drift 或 404 算失敗。

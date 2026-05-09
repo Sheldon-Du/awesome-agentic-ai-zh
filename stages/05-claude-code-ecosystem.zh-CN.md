@@ -179,6 +179,8 @@ pip install mcp
 
 | 字段 | 内容 |
 |---|---|
+| Stars | ★ 4.8k+ |
+| License | NOASSERTION |
 | 推荐度 | ⭐⭐⭐ |
 
 **教什么**：一个非平凡的 MCP server，会生成 UI 组件。让你看到 MCP 不只能做数据抓取。
@@ -269,6 +271,8 @@ pip install mcp
 
 | 字段 | 内容 |
 |---|---|
+| Stars | ★ 20k+ |
+| License | MIT |
 | 推荐度 | ⭐⭐⭐ |
 
 **教什么**：1000+ 个 agent skill，兼容于 Claude Code、Codex、Gemini CLI、Cursor。跨工具的视角。

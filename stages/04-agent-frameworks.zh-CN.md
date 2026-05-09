@@ -182,6 +182,7 @@ pip install langgraph langchain-anthropic
 | 字段 | 内容 |
 |---|---|
 | 语言 | Python |
+| Stars | ★ 24k+ |
 | License | Apache 2.0 |
 | 推荐度 | ⭐⭐⭐ |
 

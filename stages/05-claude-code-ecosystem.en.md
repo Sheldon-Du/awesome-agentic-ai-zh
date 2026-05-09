@@ -177,8 +177,11 @@ pip install mcp
 
 #### [21st-dev/magic-mcp](https://github.com/21st-dev/magic-mcp)
 
-| Recommendation | ⭐⭐⭐ |
+| Field | Value |
 |---|---|
+| Stars | ★ 4.8k+ |
+| License | NOASSERTION |
+| Recommendation | ⭐⭐⭐ |
 
 **What it teaches**: A non-trivial MCP server that creates UI components. Shows how MCP can extend beyond simple data fetching.
 
@@ -262,8 +265,11 @@ pip install mcp
 
 #### [VoltAgent/awesome-agent-skills](https://github.com/VoltAgent/awesome-agent-skills)
 
-| Recommendation | ⭐⭐⭐ |
+| Field | Value |
 |---|---|
+| Stars | ★ 20k+ |
+| License | MIT |
+| Recommendation | ⭐⭐⭐ |
 
 **What it teaches**: 1000+ agent skills compatible with Claude Code, Codex, Gemini CLI, Cursor. Cross-tool perspective.
 

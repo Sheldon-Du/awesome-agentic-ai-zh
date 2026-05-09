@@ -35,7 +35,7 @@ Editor-integrated AI pair programmer. Industry standard for AI-assisted coding.
 ★ 33k+ · Apache-2.0 — source-controlled AI checks, enforceable in CI. Represents the **team / governance** angle on coding agents.
 
 #### [OpenHands (formerly OpenDevin)](https://github.com/All-Hands-AI/OpenHands) ⭐⭐⭐⭐
-Open-source autonomous software development agent.
+★ 72k+ · MIT — open-source autonomous software development agent. More aggressive design than Aider / Claude Code — agent runs in its own sandbox and commits autonomously. Best for "throw a whole issue at it" scenarios.
 
 #### [block/goose](https://github.com/block/goose) ⭐⭐⭐⭐
 ★ 43k+ · Apache-2.0 — Open-source, extensible AI agent that goes beyond code suggestions — install / execute / edit / test, with any LLM. Supports multiple LLM providers and MCP, ships as desktop app, CLI, and API. (Repo now resolves to `aaif-goose/goose`.)
