@@ -45,25 +45,93 @@
 
 ## 5.1 — Claude Code 基礎
 
+### Claude Code 是什麼（先定位）
+
+**Claude Code = 跑在你 terminal 內的 Claude agent**——有完整 file system / shell / git / 子程序 access、可以**自主完成多步驟工作**（讀檔 → 改檔 → 跑 test → commit → 發 PR）。
+
+跟其他 Claude 介面差別：
+
+| 介面 | 跑哪 | 能做什麼 | 用法 |
+|---|---|---|---|
+| **claude.ai**（web） | 瀏覽器 | 純對話 + 上傳檔案、無 file system 操作 | 偶爾聊一下、ask 一個問題 |
+| **Claude API**（programmatic） | 你的 server / script | LLM call、自己包 agent loop | 寫 production system |
+| **Claude Agent SDK** | 你的 Python / TS 環境 | 完整 agent runtime + tool use + 多 session | 寫 production agent system |
+| **Claude Code**（**本節**） | 你的 terminal | **完整 OS-level agent**（file / shell / git / subprocess）+ skill / plugin / subagent 生態 | **日常工作主力工具** |
+
+進 5.2-5.6 之前你會在這節學到 **4 個 Claude Code 核心結構**：CLAUDE.md（記憶層）/ slash commands（控制層）/ `~/.claude/` 目錄（設定層）/ settings.json（行為層）。
+
 ### 學習目標
-- 在你的作業系統上安裝 Claude Code
-- 使用 slash commands（`/help`、`/compact`、`/clear`、`/plan`）
-- 了解 `~/.claude/` 目錄結構
-- 寫一份 project 層級的 `CLAUDE.md` 來客製化行為
+
+完成本節後你會：
+- 講得出 Claude Code 跟 claude.ai / API / SDK 各自的角色（**「為什麼用 CLI 不用 web」**）
+- 安裝 Claude Code、配置認證、跑第一個有 file access 的 session
+- 用 8-10 個常用 slash command 控制 Claude Code 行為
+- 寫一份 project-level `CLAUDE.md` 設定 baseline 行為
+- 認得 `~/.claude/` 目錄結構（skills / agents / plugins / settings.json 各放哪）
 
 ### 必修閱讀
-1. [**Anthropic — Claude Code Quickstart**](https://docs.anthropic.com/en/docs/claude-code/quickstart) — 官方安裝指南
-2. [**Anthropic — CLAUDE.md best practices**](https://docs.anthropic.com/en/docs/claude-code/memory) — 怎麼寫專案 memory
-3. [**KimYx0207/Claude-Code-x-OpenClaw-Guide-Zh**](https://github.com/KimYx0207/Claude-Code-x-OpenClaw-Guide-Zh) — 簡中入門指南
+1. [**Anthropic — Claude Code Quickstart**](https://docs.claude.com/en/docs/claude-code/quickstart) — 官方安裝指南
+2. [**Anthropic — CLAUDE.md best practices**](https://docs.claude.com/en/docs/claude-code/memory) — 怎麼寫專案 memory
+3. [**Anthropic — Slash Commands**](https://docs.claude.com/en/docs/claude-code/slash-commands) — 官方完整 slash command 列表
+4. [**Anthropic — Settings**](https://docs.claude.com/en/docs/claude-code/settings) — `settings.json` 完整 schema + env var
+5. [**KimYx0207/Claude-Code-x-OpenClaw-Guide-Zh**](https://github.com/KimYx0207/Claude-Code-x-OpenClaw-Guide-Zh) — 簡中入門指南
+
+### 常用 slash commands（10 個必學）
+
+| Command | 用途 | 何時用 |
+|---|---|---|
+| `/help` | 列出所有可用 command | 不知道有什麼指令時 |
+| `/clear` | 清空對話歷史（保留 system context） | session 太長、想重啟邏輯 |
+| `/compact` | 自動摘要對話、釋放 context window | context 接近用滿 |
+| `/plan` | 進入 plan mode（read-only、先規劃才動手） | 大改動前先讓 Claude 列計畫 |
+| `/model` | 切換 model（Sonnet / Haiku / Opus）| 改成更便宜 model 省 token |
+| `/agents` | 列 / 管理 subagent（5.5）| 看哪些 subagent 可用、debug |
+| `/plugin install <name>@<marketplace>` | 安裝 plugin（5.4）| 加新功能 |
+| `/permissions` | 看 / 改當前 session 權限 | 太多 permission prompt 想精簡 |
+| `/resume` | 恢復前次 session | 接續昨天工作 |
+| `/bg` | 把當前 session 背景化（移到 agent view）| 想同時跑多任務、見 5.5 |
+
+完整列表見上方 [Slash Commands 官方文件](https://docs.claude.com/en/docs/claude-code/slash-commands)。
+
+### `~/.claude/` 目錄結構（先有 mental map）
+
+```
+~/.claude/                          ← 全域 user-level
+├── settings.json                   ← 全域行為（env / hooks / permissions / model 預設）
+├── settings.local.json             ← 機器特定（不入 git）
+├── CLAUDE.md                       ← 全域 baseline（每個 session 都載入）
+├── skills/<name>/SKILL.md          ← user-level skills（5.3）
+├── agents/<name>.md                ← user-level subagents（5.5）
+├── plugins/                        ← 已安裝的 plugin（5.4）
+├── hooks/                          ← user-level hook scripts
+└── jobs/<id>/                      ← background sessions 狀態（5.5 background agent）
+
+<project-root>/.claude/             ← project-level（隨 repo）
+├── settings.local.json             ← project 行為（含 permissions）
+├── skills/<name>/SKILL.md          ← project-level skills（優先級高於 user-level）
+├── agents/<name>.md                ← project-level subagents
+├── commands/<name>.md              ← project-level slash command
+└── hooks/                          ← project-level hook
+
+<project-root>/CLAUDE.md            ← project baseline（每個 session 都載入）
+```
+
+**優先順序**（衝突時誰贏）：project > user > built-in default。
 
 ### 動手練習
-- **練習：Claude Code** — 安裝、跑第一個 session、請 Claude 讀檔案並摘要
-- **練習：CLAUDE.md** — 寫一份專案 CLAUDE.md，觀察行為的差異
+- **練習 1：第一個 session** — 安裝、認證、`cd` 到 repo、跑 `claude` → 問「summarize this codebase」→ 觀察怎麼讀檔
+- **練習 2：CLAUDE.md** — 寫 repo 根目錄 CLAUDE.md（role / context / 不能做的事 / 怎麼做事 / 常用指令），對照「沒 CLAUDE.md」跟「有 CLAUDE.md」的行為差別
+- **練習 3：5 個 slash commands** — 在一個 session 內依序用 `/help` `/plan` `/compact` `/model` `/agents`，觀察各自做什麼
+- **練習 4：目錄探索** — `ls ~/.claude/` + `cat ~/.claude/settings.json`、看自己 user-level 設定長什麼樣
 
 ### 精選 Projects
-- [**anthropics/claude-code**](https://github.com/anthropics/claude-code) — 官方 repo（issues、releases）
-- [**KimYx0207/Claude-Code-x-OpenClaw-Guide-Zh**](https://github.com/KimYx0207/Claude-Code-x-OpenClaw-Guide-Zh) — 簡中導讀
-- [**hesreallyhim/awesome-claude-code**](https://github.com/hesreallyhim/awesome-claude-code) — 較廣泛的資源清單（目前正在重整）
+
+| Project | ⭐ | 適合誰 | 為什麼推薦 / 備註 |
+|---|---|---|---|
+| [anthropics/claude-code](https://github.com/anthropics/claude-code) ⭐ 官方 | ⭐⭐⭐⭐⭐ | 追蹤新版本 / 看 release notes / 回報 bug | Claude Code 官方 repo、issues + releases + inline 範例 |
+| [Anthropic — Claude Code 官方文件](https://docs.claude.com/en/docs/claude-code/overview) | ⭐⭐⭐⭐⭐ | 任何 reference 查詢 | **真正的 canonical reference**——上面 5 條必修閱讀都從這裡來 |
+| [hesreallyhim/awesome-claude-code](https://github.com/hesreallyhim/awesome-claude-code) | ⭐⭐⭐⭐ | 想看社群有什麼（slash commands / skills / hooks 範例）| 較廣泛的資源清單（目前正在重整）|
+| [KimYx0207/Claude-Code-x-OpenClaw-Guide-Zh](https://github.com/KimYx0207/Claude-Code-x-OpenClaw-Guide-Zh) | ⭐⭐⭐⭐ | 中文讀者要逐步教學 | 簡中入門導讀 |
 
 ---
 
