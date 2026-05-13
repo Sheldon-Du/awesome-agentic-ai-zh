@@ -198,7 +198,7 @@ npx promptfoo eval
 
 **適合誰**：要打造 Claude-based agent 而不是只呼叫 API 的開發者。比起手刻 ReAct loop、自己管 tool execution，這個 SDK 把這些抽象都做好了。
 
-**備註**：跟 Claude Code 共用同一套 agent runtime；想理解 Claude Code 內部怎麼運作的，讀這個 SDK 的原始碼是最快的路徑。
+**備註**：跟 Claude Code 共用同一套 agent runtime；想理解 Claude Code 內部怎麼運作的，讀這個 SDK 的原始碼是最快的路徑。**Hands-on subagent 編排教學**（`.claude/agents/` + Task tool）見 [Stage 5.5](05-claude-code-ecosystem.md#55--subagentsclaude-code-原生-multi-agent-機制)——本 SDK 是 programmatic 入口、Stage 5.5 是 markdown-based 入口、兩條路徑共用同一個 runtime。
 
 ---
 
