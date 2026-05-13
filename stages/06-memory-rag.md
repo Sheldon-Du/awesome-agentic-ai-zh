@@ -146,6 +146,52 @@ Chunking 進階思考：
 
 > 💡 **Track B 重點**：你 Stage 7 寫 multi-agent 時，每個 agent 都會有「自己的 memory」+「shared memory」雙層——需要的 pattern 通常是 **2 + 3 混用**。先在本 stage 把 3 種 pattern 跑透，到 Stage 7 才不會被 multi-agent memory 設計卡住。
 
+## 🪞 進階：帶持久記憶的 Reflexion 完整版 ⭐ Track B 選讀
+
+> **本節是 concept + routing、不是練習**。延續 [Stage 3 §反思](03-tool-use-and-hello-agent.md#-反思reflexion--self-refine-概念--路由) 的基本版（single-session Actor / Critic loop），講為什麼有些反思**需要**持久記憶——這版本才真正屬於 Stage 6 主題。
+
+**Reflexion 完整版跟 Self-Refine 差在哪**：
+
+| 版本 | 跨輪保留什麼 | 跨 session 保留什麼 | 需要 memory pattern |
+|---|---|---|---|
+| **Self-Refine**（Madaan 2023） | 上一輪的 answer + critic feedback | ❌ 不保留 | 不需（pattern 1 buffer 即可） |
+| **完整 Reflexion**（Shinn 2023） | 同上 | ✅ 把過去 trial 的「反思摘要」存進 episodic memory，下次遇到類似 task 時 retrieve 進 prompt 當教訓 | **需要**（pattern 3 vector store 或 pattern 2 summary） |
+
+**為什麼這個版本要 memory**：Reflexion paper 的 verbal reinforcement learning 是「agent 跨 trial 累積教訓」——agent 嘗試 task → 失敗 → 反思「為什麼失敗」存起來 → 下次遇到類似 task 時把過去反思 retrieve 進 prompt，避免重蹈覆轍。這就需要 **persistent episodic memory**，跟本 stage 上面講的 3 種 memory pattern 直接接上。
+
+**典型架構**：
+```
+Stage 3 §反思（基本版）                Stage 6 本節（完整版）
+─────────────────────                  ─────────────────────
+ Actor → Critic → Actor                 Actor → Critic → Actor
+        ↑──────────┘                          ↑──────────┘
+ single session、in-context only           ↓
+                                       Reflection summary
+                                            ↓
+                                       Episodic memory store
+                                       （vector / summary pattern）
+                                            ↓
+                                       next task → retrieve relevant
+                                       past reflections → prepend to
+                                       Actor's prompt
+```
+
+### 📚 想動手 / 想深入
+
+**Paper**：
+- [**Reflexion (Shinn et al. 2023)**](https://arxiv.org/abs/2303.11366) ⭐ — **完整版** paper，Algorithm 1 寫出 memory buffer 怎麼用
+- [**Self-Refine (Madaan et al. 2023)**](https://arxiv.org/abs/2303.17651) — 對照 baseline，沒 episodic memory 的版本
+
+**Reference 實作**：
+- [**noahshinn/reflexion**](https://github.com/noahshinn/reflexion) — paper 第一作者的 reference 實作（含 episodic memory 完整流程）
+- [**LangChain — Reflexion**](https://langchain-ai.github.io/langgraph/tutorials/reflexion/reflexion/) — LangGraph 版本，跟本 stage 練習 4 RAG pipeline 直接接得起來
+- [**mem0**](https://github.com/mem0ai/mem0)（已在上面列）+ [**Letta**](https://github.com/letta-ai/letta)（已在上面列）— production memory layer，可以直接當 Reflexion 的 episodic store
+
+> 💡 **跟 Stage 3 §反思的分工**：
+> - 想理解「反思 loop 怎麼運作、單次怎麼跑」→ Stage 3 §反思
+> - 想理解「反思怎麼跨 session 累積、agent 怎麼從過去學教訓」→ 本節
+> - 想看 production agent 內怎麼用反思（Cursor / Claude Code）→ [Stage 5 §5.6 Harness Internals](05-claude-code-ecosystem.md#56--harness-internalsagent-runtime-的內部結構-track-b-必看)
+
 ## 🛠 動手練習（基礎 illustrative 練習）
 
 ### 練習 1：Embeddings
