@@ -112,10 +112,10 @@ cd awesome-agentic-ai-zh
 | **A1** | [CLI Agent 入門 + 選擇](tracks/cli/A1-cli-intro.md) | 6 主流 CLI 比較 · 安裝 · 第一次跑 | 1 週 |
 | **A2** | [CLI Workflow Patterns](tracks/cli/A2-cli-workflow.md) | CLAUDE.md · slash command · 多步驟拆解 | 1-2 週 |
 | **A3** | [Integration & Production](tracks/cli/A3-cli-production.md) | MCP 接 CLI · CI 自動化 · cost / observability | 1-2 週 |
+| **+5** 🔄 | [Stage 5 — Claude Code 生態](stages/05-claude-code-ecosystem.md)（**共用 hub**） | MCP · Skills · Plugins · Subagents、Track A 必看 5.1-5.4 / 選讀 5.5-5.6 | 1-2 週（Track A 視角）|
+| **+8** 🔄 | [Stage 8 — Agent Interfaces](stages/08-agent-interfaces.md)（**共用 hub**）| Computer Use · Browser Use · Code Sandbox、Track A 視角看 §Track A 怎麼用 | 1-2 週（Track A 視角）|
 
-> **Track A 預估總時程**：3-5 週（含 Stage 0-2 約 6-8 週、再加 Stage 8 共用 hub 約 8-10 週）。核心參考：[`resources/cli-agents-guide.md`](resources/cli-agents-guide.md)。
-
-> 💡 **Track A 走完 A3 → 接 Stage 8（兩 track 共用 hub）**——學會用 Claude Computer Use / OpenAI Codex desktop / AI Browser 做跨 app 自動化。
+> **Track A 預估總時程**：含 Stage 0-2（共用基礎）+ A1-A3 + **Stage 5 + Stage 8（兩個共用 hub）= 約 8-10 週**。核心參考：[`resources/cli-agents-guide.md`](resources/cli-agents-guide.md)。
 
 ### Track B — Agent Builder（從零打造 agent）
 
@@ -123,16 +123,18 @@ cd awesome-agentic-ai-zh
 |---|---|---|---|
 | **3** ⭐ | [Tool Use & Agent 入門](stages/03-tool-use-and-hello-agent.md) | function calling · ReAct · 5 個動手練習 | 2-3 週 |
 | **4** | [Agent 框架](stages/04-agent-frameworks.md) | LangGraph · AutoGen · CrewAI · Smolagents | 2-3 週 |
-| **5** ⭐⭐ | [Claude Code 生態](stages/05-claude-code-ecosystem.md) | MCP · Skills · Plugins · Marketplace（兩條路徑都會用到） | 3-4 週 |
+| **5** ⭐⭐ 🔄 | [Claude Code 生態](stages/05-claude-code-ecosystem.md)（**共用 hub**、Track A 也學）| MCP · Skills · Plugins · Subagents | 3-4 週（Track B 視角）|
 | **6** | [Memory · RAG · 進階](stages/06-memory-rag.md) | vector DB · long-term memory · contextual retrieval | 2 週 |
 | **7** | [進階 Multi-Agent](stages/07-multi-agent-production.md) | multi-agent orchestration · eval · observability · SDK 進階 | 2-4 週 |
-| **8** ⭐⭐ | [Agent Interfaces](stages/08-agent-interfaces.md) | Computer Use · Browser Use · Code Sandbox（**兩 track 共用** hub）| 2-3 週 |
+| **8** ⭐⭐ 🔄 | [Agent Interfaces](stages/08-agent-interfaces.md)（**共用 hub**、Track A 也學）| Computer Use · Browser Use · Code Sandbox、2024-2026 frontier | 2-3 週（Track B 視角）|
 
 > **Track B 預估總時程**：主幹最少 **16-22 週**、現實 **5-7 個月**（每週 5-8 hr 兼職）
 
-> 💡 **Stage 5 + Stage 8 是兩個 hub**——Track A 跟 Track B 都會用到。
-> - Stage 5 = Claude Code 生態（MCP / Skills / Plugins / Subagents）
-> - Stage 8 = Agent Interfaces（Computer Use / Browser / Sandbox、2024-2026 frontier）
+> 🔄 **兩個共用 hub（Track A + Track B 都會用到）**：
+> - **Stage 5** = Claude Code 生態（MCP / Skills / Plugins / Subagents）—— Track A 學 MCP 接 CLI、Track B 學 agent runtime 結構
+> - **Stage 8** = Agent Interfaces（Computer Use / Browser / Sandbox、2024-2026 frontier）—— Track A 學「**怎麼用**」委派任務、Track B 學「**怎麼 build**」embed 進 agent
+>
+> 兩個 hub 出現在兩條 track 內、視角不同、學的深度也不同（內文有 §Track A / §Track B 分視角段）。
 
 > 💡 **想看跨 stage 的完整範例？** [7 步打造你的第一個 AI Agent](walkthroughs/build-first-agent-in-7-steps.md) — 同一個 Paper Summary Bot 從 Stage 1 一路寫到 Stage 7，~350 行真實程式碼（**Track B 適用**）
 
