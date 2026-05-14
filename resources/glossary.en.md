@@ -318,17 +318,21 @@ The current top tier (GPT-5, Claude Sonnet 4.5, Gemini 2.5 Pro, etc.). Use front
 
 ### Context Engineering
 
-When designing one prompt sentence stops being enough, and you need to dynamically assemble **system prompt + tool definitions + memory + retrieved chunks + multi-turn history** — that is the design discipline for the whole stack. **The next layer above prompt engineering.**
+The discipline of engineering **what information goes into the context window on each LLM call** — dynamically assembling RAG retrieval results, memory, tool definitions, and conversation history into the context the model can see. Karpathy 2025: the delicate art of putting **just the right information for the next step** into the window. The key question is *what goes in the window*, not "how many calls are involved." **The next layer above prompt engineering** — prompt engineering shapes **strings**; context engineering shapes **information**.
 
 📍 Detail: [Stage 2 closing](../stages/02-prompt-engineering.en.md) / [Stage 6](../stages/06-memory-rag.en.md) / [Stage 7](../stages/07-multi-agent-production.en.md)
 📍 Further: [`Meirtz/Awesome-Context-Engineering`](https://github.com/Meirtz/Awesome-Context-Engineering)
 
 ### Harness Engineering
 
-The toolchain design for wrapping an agent into a production system — permissions, tool registry, memory layer, eval, observability, retry / circuit breaker. Claude Code, Cursor, OpenCode, etc. are all "harnesses". **A framework wraps an LLM into an agent; a harness wraps an agent into a product.**
+The discipline of engineering the **execution and control layer around the model** — everything that is not model weights and not just the prompt string itself: agent loop / tool registry / context manager / permissions / safety layer / memory layer / eval / observability / retry / circuit breaker, etc. Simon Willison 2025: **coding agent = LLM + harness**. Addy Osmani: harness = all the code that is not the model itself. [OpenAI also used the term "Harness Engineering" in February 2026](https://openai.com/index/harness-engineering). Claude Code, Cursor, OpenCode, etc. are harnesses. **A framework wraps an LLM into an agent; a harness wraps an agent into a product that can actually be used in production.**
 
-📍 Detail: [Stage 7](../stages/07-multi-agent-production.en.md) required reading
-📍 Further: [`ai-boost/awesome-harness-engineering`](https://github.com/ai-boost/awesome-harness-engineering), [`ZhangHanDong/harness-engineering-from-cc-to-ai-coding`](https://github.com/ZhangHanDong/harness-engineering-from-cc-to-ai-coding)
+Contrast:
+- **Framework** (Stage 4) defines the **API**: what the interface you call looks like
+- **Harness** (this term) defines the **runtime**: how it runs, how it recovers, how it is observed
+
+📍 Detail: [Stage 7](../stages/07-multi-agent-production.en.md)
+📍 Further: [`anthropics/claude-agent-sdk-python`](https://github.com/anthropics/claude-agent-sdk-python), [`ai-boost/awesome-harness-engineering`](https://github.com/ai-boost/awesome-harness-engineering), [`ZhangHanDong/harness-engineering-from-cc-to-ai-coding`](https://github.com/ZhangHanDong/harness-engineering-from-cc-to-ai-coding)
 
 ---
 

@@ -506,14 +506,29 @@ Already cited in Stage 1. Specifically the `misc/prompt_caching.ipynb` and `mult
 
 ---
 
-## 🔭 Beyond prompts: context engineering
+## 🔭 Advanced: The Three Layers of Prompt → Context → Harness Engineering
 
-When you find that **a single prompt can no longer cover the problem** — and you need to dynamically assemble system prompt + retrieved chunks + memory + tool definitions + multi-turn history — you've graduated from prompt engineering to **context engineering**. It's the next layer up.
+Engineering practice for LLM-powered systems can be divided into **three stack layers**. This is not about "one call vs. many calls." Each layer engineers a different object:
 
-**Don't try to learn it now**, just know the direction:
+- **Prompt Engineering** (this stage) = engineering **the string sent into the model**
+- **Context Engineering** (Stage 6) = engineering **what information goes into the context window on each call** — dynamically assembling RAG retrieval results, memory, tool definitions, and conversation history
+- **Harness Engineering** (Stage 7) = engineering **the runtime / scaffolding around the model** — agent loops, retry, sandboxing, observability, deployment, and all other non-LLM code
 
-- You'll first hit it in [Stage 6 (Memory · RAG)](06-memory-rag.en.md) (what data goes into the prompt)
-- You'll fully face it in [Stage 7 (Multi-Agent · Production)](07-multi-agent-production.en.md) (context window budget, memory layering, observability)
+→ The three layers are **orthogonal**: a one-call RAG app is still doing context engineering (the point is assembling context, not how many calls happen); a 50-call chatbot with no retrieval is still only doing prompt engineering.
+
+**Full three-layer lineage in this roadmap**:
+
+| Discipline | What is being engineered | Where this roadmap teaches it fully |
+|---|---|---|
+| **1. Prompt Engineering** | The string sent into the LLM itself (system prompt / few-shot / format) | **This stage (Stage 2)** |
+| **2. Context Engineering** | What information goes into the context window (RAG / memory / tool defs / history) | [Stage 6 — Context Engineering: RAG and Memory](06-memory-rag.en.md) |
+| **3. Harness Engineering** | The runtime scaffolding around the LLM (agent loop / retry / sandbox / observability) | [Stage 7 — Multi-Agent · Production](07-multi-agent-production.en.md) |
+
+> 💡 **Karpathy 2025-06**: context engineering is the delicate art of putting information that is **just useful for the next step** into the context window.
+>
+> 💡 **Simon Willison / Addy Osmani**: "coding agent = LLM + harness"; a harness is all the code that is not the model itself. [OpenAI also used the term "Harness Engineering" in February 2026](https://openai.com/index/harness-engineering).
+
+**You do not need to finish the latter two layers in this stage**. This section only gives you the direction so that Stage 6 / 7 feel like a continuation of the same lineage.
 
 Further reading (optional, for when you want to dig deeper):
 
