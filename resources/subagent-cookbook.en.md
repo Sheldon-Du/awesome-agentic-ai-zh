@@ -37,7 +37,7 @@ Run `/agents` inside your Claude Code session. It lists every subagent currently
 | `code-reviewer` | Review diffs; find bugs + security issues |
 | `Explore` | Read-only codebase search; find code |
 | `Plan` | Design a step-by-step implementation plan |
-| `frontend-developer` | React / UI / responsive design / a11y |
+| `frontend-developer` | React / UI / responsive design / a11y (shorthand for accessibility — designing for screen-reader and keyboard-only users) |
 | `claude-code-guide` | Ask how to use Claude Code features |
 | `statusline-setup` | Configure the status line utility; invoke directly, no standalone recipe |
 

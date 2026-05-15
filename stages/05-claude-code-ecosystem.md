@@ -530,9 +530,9 @@ Plugin
 | 找 code / 探索陌生 codebase 結構 | `Explore` | 專門做 read-only 搜尋、不會亂改 |
 | 設計實作 plan（不直接寫 code） | `Plan` | 輸出 step-by-step 計畫、適合大任務拆解前 |
 | Review staged diff / 安全審查 / 發 commit 前檢查 | `code-reviewer` | 結構化輸出 PASS/FAIL + 具體 fix |
-| 寫 / 改 UI component / 處理 accessibility | `frontend-developer` | React / 響應式 / a11y 領域知識 |
+| 寫 / 改 UI component / 處理 accessibility（無障礙設計）| `frontend-developer` | React / 響應式 / a11y（accessibility 縮寫、視障 / 鍵盤使用者也能用的設計）領域知識 |
 | 多步驟研究、不確定任務該歸哪類 | `general-purpose` | 通用、可 web search、適合 fallback |
-| 問 Claude Code 自己的 feature 怎麼用 | `claude-code-guide` | hooks / slash command / MCP 等問題 |
+| 問 Claude Code 自己的 feature 怎麼用 | `claude-code-guide` | hooks（工具執行前 / 後的攔截腳本、見下方 Gotcha #5）/ slash command（`/` 開頭的指令）/ MCP 等問題 |
 | 上面都不符合 | 自己寫 `.claude/agents/<name>.md` | 客製或公司 specific 流程 |
 
 **5 個常見情境的 mini cookbook**（完整 15 個 recipe 見下面）：
@@ -631,7 +631,7 @@ You are a senior code reviewer. When invoked:
 ### 學習目標
 
 - 講得出 subagent 跟 skill / MCP server 的差別（**subagent ≠ skill**：skill 是行為 prompt，subagent 是**另一個 Claude instance with isolated context**）
-- 寫一個 `.claude/agents/<name>.md` 自訂 subagent（frontmatter + system prompt + tool whitelist）
+- 寫一個 `.claude/agents/<name>.md` 自訂 subagent（frontmatter + system prompt + `tools:` 白名單——明寫允許的工具清單）
 - 從主 session 用 Task tool invoke subagent，觀察 context 隔離（parent 看不到 subagent 的中間 step、只看到最終 result）
 - 知道何時用 subagent（parallel research / large-context isolated task / specialized review），何時不用（小 query 用 skill 即可）
 

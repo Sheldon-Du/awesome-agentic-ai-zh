@@ -37,7 +37,7 @@
 | `code-reviewer` | Review diff，找 bug + 安全问题 |
 | `Explore` | 只读搜索 codebase，找 code |
 | `Plan` | 设计 step-by-step 实作计划 |
-| `frontend-developer` | React / UI / 响应式 / a11y |
+| `frontend-developer` | React / UI / 响应式 / a11y（accessibility 缩写，视障 / 键盘使用者也能用的设计）|
 | `claude-code-guide` | 问 Claude Code 自己的 feature 怎么用 |
 | `statusline-setup` | 设置 status line（小工具）— 直接调用即可，无独立 recipe |
 

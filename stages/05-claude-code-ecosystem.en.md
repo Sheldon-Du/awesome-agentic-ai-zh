@@ -530,9 +530,9 @@ For the 7 built-in Claude Code subagents above, this table maps “**when you ne
 | Find code / explore an unfamiliar codebase structure | `Explore` | Built for read-only search; will not randomly edit |
 | Design an implementation plan without writing code directly | `Plan` | Produces a step-by-step plan, useful before breaking down a large task |
 | Review staged diff / security audit / pre-commit check | `code-reviewer` | Structured PASS/FAIL output + concrete fixes |
-| Write / modify UI components / handle accessibility | `frontend-developer` | React / responsive design / a11y domain knowledge |
+| Write / modify UI components / handle accessibility | `frontend-developer` | React / responsive design / a11y (shorthand for accessibility — designing for screen-reader and keyboard-only users) domain knowledge |
 | Multi-step research, or you are unsure which category fits | `general-purpose` | General-purpose, can web search, good fallback |
-| Ask how to use a Claude Code feature | `claude-code-guide` | Questions about hooks / slash commands / MCP |
+| Ask how to use a Claude Code feature | `claude-code-guide` | Questions about hooks (scripts that intercept tool calls before / after they run — see Gotcha #5 below) / slash commands (commands starting with `/`) / MCP |
 | None of the above fits | Write `.claude/agents/<name>.md` yourself | Custom or company-specific workflow |
 
 **Mini cookbook for 5 common scenarios** (see the full 15 recipes below):
@@ -631,7 +631,7 @@ Later, in the main session, if you type "review my changes," Claude will see the
 ### Learning Goals
 
 - Explain the difference between a subagent and a skill / MCP server (**subagent ≠ skill**: a skill is a behavioral prompt, a subagent is **another Claude instance with an isolated context**)
-- Write a custom subagent in a `.claude/agents/<name>.md` file (frontmatter + system prompt + tool whitelist)
+- Write a custom subagent in a `.claude/agents/<name>.md` file (frontmatter + system prompt + a `tools:` allowlist that explicitly lists permitted tools)
 - Invoke a subagent from the main session using the Task tool and observe the context isolation (the parent can't see the subagent's intermediate steps, only the final result)
 - Know when to use a subagent (parallel research / large-context isolated tasks / specialized reviews) and when not to (small queries can be handled by skills)
 
