@@ -100,14 +100,9 @@ You typically need multi-agent when one of these four signals appears:
 
 **Frameworks aren't the only way to do multi-agent.** Anthropic's own Claude Code offers another layer of abstraction: the [subagent](05-claude-code-ecosystem.en.md#55--subagents-native-multi-agent-in-claude-code-new-in-2025). You create a subagent by writing a `.claude/agents/<name>.md` file—**no framework required**.
 
-The fundamental difference from the framework path:
+The fundamental difference from the framework path (in one line): the **framework path** is cross-LLM-provider, written as Python orchestration code, with full checkpointing / audit trail; **Claude Code subagent** runs only inside the Claude Code runtime, written as markdown not code, with built-in context isolation.
 
-| Dimension | Framework Path (Topic of this stage) | Claude Code Subagent Path |
-| ------------------- | ---------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| **Where it runs** | Most frameworks are cross-LLM provider (LangGraph / CrewAI / AutoGen); OpenAI Agents SDK and Strands Agents are exceptions, tied to their ecosystems. | Only within the Claude Code runtime. |
-| **How you write it**| Python code + framework-specific syntax like `langgraph.graph()` / `Crew(agents=...)`. | `.claude/agents/X.md` markdown files with frontmatter. |
-| **Who it's for** | Production systems that need to be cross-LLM provider. | Engineering teams already committed to the Claude Code ecosystem. |
-| **Core Benefits** | **Checkpointing + state persistence** (LangGraph), **audit trail / time-travel debug** (essential for production), orchestration control, cross-provider portability. | Context preservation, role specialization, tool constraints, cost control (by routing to cheaper models). |
+> 📌 **The full dimension-by-dimension comparison table (startup / runtime / context isolation / provider lock-in / learning curve) lives canonically at [Stage 5.5](05-claude-code-ecosystem.en.md#55--subagents-native-multi-agent-in-claude-code-new-in-2025)** — this stage only needs you to know "there's a second, Claude-Code-native path"; see 5.5 for the per-item implementation differences.
 
 **When to choose subagents over a framework**:
 - You're already using Claude Code for your daily work.

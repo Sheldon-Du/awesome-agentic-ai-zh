@@ -29,17 +29,9 @@ Each recipe uses the same 4-part structure:
 
 Run `/agents` inside your Claude Code session. It lists every subagent currently available to you: built-in, plugin-provided, and custom.
 
-**The 7 built-in Claude Code subagents** (as of 2025-11; this may change):
+**The 7 built-in Claude Code subagents**: `general-purpose` / `code-reviewer` / `Explore` / `Plan` / `frontend-developer` / `claude-code-guide` / `statusline-setup` (as of 2025-11; this may change).
 
-| Name | One-line purpose |
-|---|---|
-| `general-purpose` | General research / multi-step tasks / fallback |
-| `code-reviewer` | Review diffs; find bugs + security issues |
-| `Explore` | Read-only codebase search; find code |
-| `Plan` | Design a step-by-step implementation plan |
-| `frontend-developer` | React / UI / responsive design / a11y (shorthand for accessibility — designing for screen-reader and keyboard-only users) |
-| `claude-code-guide` | Ask how to use Claude Code features |
-| `statusline-setup` | Configure the status line utility; invoke directly, no standalone recipe |
+> 📌 **Each built-in subagent's purpose + the "task X → use subagent Y" decision table live canonically at [Stage 5.5 §Which subagents can you dispatch?](../stages/05-claude-code-ecosystem.en.md#which-subagents-can-you-dispatch)** — this cookbook focuses on the 15 dispatch recipes; treat Stage 5.5 as the source of truth for the built-in list and selection logic.
 
 > 💡 **If your `/agents` list does not match this cookbook**: you may have installed plugins, or your Claude Code version may differ. **When a recipe name does not match, use the closest available subagent**. For example, if you do not have `Explore`, `general-purpose` can still run a search task.
 
