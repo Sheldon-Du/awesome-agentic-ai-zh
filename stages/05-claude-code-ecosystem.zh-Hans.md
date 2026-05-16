@@ -584,7 +584,7 @@ Plugin
 | 找 code / 探索陌生 codebase 结构 | `Explore` | 专门做 read-only 搜索，不会乱改 |
 | 设计实作 plan（不直接写 code） | `Plan` | 输出 step-by-step 计划，适合大任务拆解前 |
 | Review staged diff / 安全审查 / 发 commit 前检查 | `code-reviewer` | 结构化输出 PASS/FAIL + 具体 fix |
-| 写 / 改 UI component / 处理 accessibility（无障碍设计）| `frontend-developer` | React / 响应式 / a11y（accessibility 缩写，视障 / 键盘使用者也能用的设计）领域知识 |
+| 写 / 改 UI component / 处理 accessibility（无障碍设计）| `frontend-developer` | React / 响应式 / a11y（accessibility 缩写，视障 / 键盘用户也能用的设计）领域知识 |
 | 多步骤研究，不确定任务该归哪类 | `general-purpose` | 通用，可 web search，适合 fallback |
 | 问 Claude Code 自己的 feature 怎么用 | `claude-code-guide` | hooks（工具执行前 / 后的拦截脚本，见下方 Gotcha #5）/ slash command（`/` 开头的指令）/ MCP 等问题 |
 | 上面都不符合 | 自己写 `.claude/agents/<name>.md` | 客制或公司 specific 流程 |

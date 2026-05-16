@@ -16,7 +16,7 @@ When the user mentions tool calling problems, ask **which of these 4 symptoms** 
 3. **(c) ReAct loop 跑不停 / 漏步** — 多步 loop 无限循环，或者中间漏一个 tool 没调用
 4. **(d) 我从零开始、还没写 schema** — 用户要新做一个 tool、想知道 schema 怎么设计
 
-**不要猜**——让使用者明确选一个。每个 branch 走的 reference 不同。
+**不要猜**——让用户明确选一个。每个 branch 走的 reference 不同。
 
 ## Step 2 — Branch by symptom
 
@@ -69,7 +69,7 @@ When the user mentions tool calling problems, ask **which of these 4 symptoms** 
 
 ## Step 3 — SDK 差异提醒
 
-使用者可能在 Anthropic / OpenAI / Ollama 之间切换、SDK shape 不同。看 [`references/sdk-diff.zh-Hans.md`](../references/sdk-diff.zh-Hans.md) 的 3 行对照表。**不要假设使用者知道——主动问一次“你用哪个 SDK”**。
+用户可能在 Anthropic / OpenAI / Ollama 之间切换、SDK shape 不同。看 [`references/sdk-diff.zh-Hans.md`](../references/sdk-diff.zh-Hans.md) 的 3 行对照表。**不要假设用户知道——主动问一次“你用哪个 SDK”**。
 
 ## Step 4 — Mock test first（强烈建议）
 
@@ -89,11 +89,11 @@ When the user mentions tool calling problems, ask **which of these 4 symptoms** 
 - **Production 监控 / observability / cost tracking** → 路 Stage 7
 - **Prompt engineering 一般技巧** → 路 Stage 2
 
-碰到这些情境、直接告诉使用者“这个 skill 处理 tool-use mechanics、你这个问题需要 Stage X、建议去看 ...”、不要硬吃下去。
+碰到这些情境、直接告诉用户“这个 skill 处理 tool-use mechanics、你这个问题需要 Stage X、建议去看 ...”、不要硬吃下去。
 
 ## Don't
 
-- **不要直接帮使用者写一整份 starter.py**——他们需要练 mental model、不是拿到答案 copy-paste。指他们 fork [`../../stage-3/`](../../../stage-3/) 的 starter、改 TOOLS_SPEC 就好。
+- **不要直接帮用户写一整份 starter.py**——他们需要练 mental model、不是拿到答案 copy-paste。指他们 fork [`../../stage-3/`](../../../stage-3/) 的 starter、改 TOOLS_SPEC 就好。
 - **不要跳过 Step 1 triage**——4 个 symptom 的修法不同，没问清楚就猜会浪费时间。
 - **不要假设 user 用 Claude**——Path A 默认是 Ollama qwen2.5:3b，先问再答。
 - **不要把 schema-design 规则背一遍**——`resources/schema-design-cheatsheet.zh-Hans.md` 已经写好，指过去就行。

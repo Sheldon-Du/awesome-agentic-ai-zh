@@ -95,7 +95,7 @@ crew.kickoff()
 
 - **LangGraph `bind_tools`**：要 `llm.bind_tools([search])` 才会把 tool schema 给 LLM。没 bind 模型就不知道 tool 存在
 - **CrewAI LLM 设定**：要靠 LiteLLM 格式（譬如 `"ollama/qwen2.5:3b"`、不是 `"qwen2.5:3b"`）。错一个字 framework 不会 raise、会直接连到 OpenAI 预设
-- **CrewAI 结果类型**：`crew.kickoff()` 回 `CrewOutput` 物件、`str(result)` 拿文字。直接 `print(result)` 有可能拿到 repr
+- **CrewAI 结果类型**：`crew.kickoff()` 回 `CrewOutput` 对象、`str(result)` 拿文字。直接 `print(result)` 有可能拿到 repr
 
 ## 想看更聪明的答案？
 

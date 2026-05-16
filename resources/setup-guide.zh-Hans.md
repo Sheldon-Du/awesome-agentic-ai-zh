@@ -104,7 +104,7 @@
 
 #### 中国 / 中文场景（地区友善、价格极便宜）
 
-> 中国大陆使用者连 Anthropic / OpenAI 有困难、或想试中文 native 模型，从这边开始。**这些 API 都 OpenAI-compatible**、改 `base_url` 跟 model name 就能跑同一份练习。
+> 中国大陆用户连 Anthropic / OpenAI 有困难、或想试中文 native 模型，从这边开始。**这些 API 都 OpenAI-compatible**、改 `base_url` 跟 model name 就能跑同一份练习。
 
 - **DeepSeek**：https://platform.deepseek.com/
   web 版 https://chat.deepseek.com 完全免费（含 R1 推理模型）。API 价格极便宜（**$0.27 input / $1.10 output per 1M token**、比 haiku 便宜 4 倍）。Code / 推理都很强。

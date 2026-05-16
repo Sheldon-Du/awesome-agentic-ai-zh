@@ -83,7 +83,7 @@ def chunk_headings(text):
 - **Chunk 太小**：context 不足、LLM 看不到 holistic 答案
 - **没测过真实 query**：开发时用 toy query 验、production query 完全不同
 - **PDF chunking 直接套 markdown 逻辑**：PDF 有 column / footnote / table、要用 `pdfplumber` 或 `unstructured`
-- **CJK 文本切到一半字元**：UTF-8 byte slice 会切坏 multi-byte char
+- **CJK 文本切到一半字符**：UTF-8 byte slice 会切坏 multi-byte char
 
 ## 想看更聪明的 chunking？
 

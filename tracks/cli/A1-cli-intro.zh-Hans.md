@@ -23,7 +23,7 @@
 ## 🚪 进入条件
 
 你应该已经：
-- 跑过 Stage 0 的 练习：CLI（会用命令列）
+- 跑过 Stage 0 的 练习：CLI（会用命令行）
 - 有 Claude / OpenAI / Google 任一个 账号（不一定是付费）
 - 对 prompt 写法基本上手（Stage 2）
 
@@ -58,7 +58,7 @@
 装第二个 CLI（建议 Codex 或 OpenCode 当 backup）。用同一个 prompt 跑，比较输出风格、速度、cost。**不是要选一个赢家——是要学“不同 CLI 解同一个问题的角度不同”**。
 
 ### 动手练习 CLI-4：认证细节
-故意把 API key 弄错一个字元，看 CLI 怎么报错。再做一次“正确 key 但 model 名称错”的实验。Production 用一定 会遇到 auth 问题，先在这里踩过。
+故意把 API key 弄错一个字符，看 CLI 怎么报错。再做一次“正确 key 但 model 名称错”的实验。Production 用一定 会遇到 auth 问题，先在这里踩过。
 
 ## 🎯 精选 Projects
 

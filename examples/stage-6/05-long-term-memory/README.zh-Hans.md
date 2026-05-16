@@ -90,10 +90,10 @@ def chat(user_msg, memory):
 ## 常见坑
 
 - **每轮都 add to memory**：vector store 会爆。要有“fact extraction”过滤、只存值得记的
-- **没 dedup**：使用者多轮重复讲“I live in Taipei”、会存 5 条一样的。要加 dedup 逻辑（similarity > 0.95 视为重复）
-- **Forget / update 机制缺失**：使用者搬家了“I now live in Tokyo”、旧 memory“Taipei”要怎么处理？production 要支持“supersede”概念
+- **没 dedup**：用户多轮重复讲“I live in Taipei”、会存 5 条一样的。要加 dedup 逻辑（similarity > 0.95 视为重复）
+- **Forget / update 机制缺失**：用户搬家了“I now live in Tokyo”、旧 memory“Taipei”要怎么处理？production 要支持“supersede”概念
 - **没 context size 控制**：recall top-k 太大、context 爆，LLM 也分心
-- **隐私 / GDPR**：使用者要求删除个人信息、要有 `forget(user_id)` API
+- **隐私 / GDPR**：用户要求删除个人信息、要有 `forget(user_id)` API
 
 ## Production-grade 工具
 

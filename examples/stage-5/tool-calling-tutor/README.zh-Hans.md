@@ -36,7 +36,7 @@ cp SKILL.md ~/.claude/skills/tool-calling-tutor/
 cp -r references evals ~/.claude/skills/tool-calling-tutor/
 ```
 
-简体中文使用者：`cp translations/SKILL.zh-Hans.md ~/.claude/skills/tool-calling-tutor/SKILL.md`（canonical 是 zh-TW）。
+简体中文用户：`cp translations/SKILL.zh-Hans.md ~/.claude/skills/tool-calling-tutor/SKILL.md`（canonical 是 zh-TW）。
 繁体中文：直接用 `SKILL.md`。
 English：`cp translations/SKILL.en.md ~/.claude/skills/tool-calling-tutor/SKILL.md`
 

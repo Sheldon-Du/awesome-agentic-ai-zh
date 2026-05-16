@@ -1,8 +1,8 @@
-# 日常使用者延伸路线（For Everyday Users）
+# 日常用户延伸路线（For Everyday Users）
 
 > [繁體中文](./for-everyday-users.md) | **简体中文** | [English](./for-everyday-users.en.md)
 
-> 🚀 **日常使用者可直接从 Tier 0 开始**（网页 / 手机 App）、**不需要任何 setup**。只有当你想跑本地 LLM（Tier 3）或用 CLI 自动化（Tier 2）时，才需要看 [`resources/setup-guide.zh-Hans.md` A-C](../resources/setup-guide.zh-Hans.md)（30 分钟从零装好）。
+> 🚀 **日常用户可直接从 Tier 0 开始**（网页 / 手机 App）、**不需要任何 setup**。只有当你想跑本地 LLM（Tier 3）或用 CLI 自动化（Tier 2）时，才需要看 [`resources/setup-guide.zh-Hans.md` A-C](../resources/setup-guide.zh-Hans.md)（30 分钟从零装好）。
 
 > [← 回主路线 README](../README.zh-Hans.md) · 你**不一定要走完主干**才能从这里开始——这条分支是给“**只想 USE AI、不一定要 BUILD agent**”的人。
 
@@ -88,7 +88,7 @@ ChatGPT 桌面版。可以对屏幕截图问问题、语音对话、跟其他 Ap
 | Stars | ★ 80k+ |
 | License | Apache-2.0 |
 
-**教什么**：OpenAI 出品的终端机 agent——可以在命令列帮你整理文件、批量处理文字、执行多步骤任务；写程序只是其中一种用途。跟 Claude Code 同类，但用的是 OpenAI 的模型。
+**教什么**：OpenAI 出品的终端机 agent——可以在命令行帮你整理文件、批量处理文字、执行多步骤任务；写程序只是其中一种用途。跟 Claude Code 同类，但用的是 OpenAI 的模型。
 
 **适合谁**：已经订 ChatGPT Plus / Pro，想在终端机用同一个账号做事的人。
 

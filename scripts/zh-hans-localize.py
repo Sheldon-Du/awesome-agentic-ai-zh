@@ -50,10 +50,33 @@ VOCAB = {
     "程式": "程序",      # program / code
     "品质": "质量",      # quality
     "回应": "响应",      # response (LLM/API output)
+    # --- batch 2 (grep-verified, 2026-05; sourced from PR #18 / residue scan) ---
+    "使用者": "用户",    # user (all prose occ = "user"; meta tables PROTECTed)
+    "命令列": "命令行",  # command line
+    "字元": "字符",      # character (text/encoding)
+    "物件": "对象",      # object (programming / 3D — mainland tech standard)
+    # EXCLUDED on purpose (grep-verified unsafe — do NOT add):
+    #   介面→界面  : appears in the Stage 8 H1 + README link text →
+    #                changing it shifts the anchor slug & breaks inbound
+    #                `#…操作介面…` links (anchor-corruption risk).
+    #   影片→视频  : substring of 投影片 (slides) → 投影片→投视频 (wrong).
+    #   軟體/專案/腳本/連結/設定/飛書/資料/預設 : only occur inside the
+    #                PROTECTed reference docs (nothing to localize).
+    #   预设/教学  : context-sensitive (default vs assume / tutorial vs
+    #                teaching) — no single mainland equivalent.
 }
 # Mainland quote convention: 「」 (Japanese/Taiwan corner brackets)
 # → “ ” (GB/T fullwidth curly double quotes).
 QUOTES = {"「": "“", "」": "”"}
+
+# Reference / policy docs that INTENTIONALLY contain TW↔Mainland term
+# pairs as documentation — substituting there corrupts the reference
+# (e.g. `| 使用者 | 用户 |` → `| 用户 | 用户 |`). Mirrors lint.yml's own
+# zh-Hans residue-check exclusion list (project-established convention).
+PROTECT = {
+    "resources/style-guide.zh-Hans.md",
+    "resources/glossary.zh-Hans.md",
+}
 
 REPO = Path(__file__).resolve().parent.parent
 FENCE_RE = re.compile(r"```.*?```", re.DOTALL)
@@ -107,6 +130,7 @@ def main() -> int:
     files = sorted(
         p for p in REPO.rglob("*.zh-Hans.md")
         if ".ai" not in p.parts and "node_modules" not in p.parts
+        and p.relative_to(REPO).as_posix() not in PROTECT
     )
     total = 0
     changed_files = 0
