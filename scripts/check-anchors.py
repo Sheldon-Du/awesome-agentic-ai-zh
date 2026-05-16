@@ -12,8 +12,12 @@ Exit codes:
     0 — 全部 anchor 都 valid
     1 — 有 broken anchor（strict mode）/ 一律 0（non-strict）
 
-排除：.ai/, book/, node_modules/, .git/, archives/, *.en.md, *.zh-Hans.md mirror
-（mirror 是漸進翻譯、anchor 可能晚於 zh-TW 同步）
+排除：.ai/, book/, node_modules/, .git/, archives/ 目錄。
+
+mirror 檔（*.en.md / *.zh-Hans.md）**現在也驗**——歷史上曾排除（理由是
+「漸進翻譯、anchor 可能晚於 zh-TW 同步」），但該豁免讓 97 個壞掉的對外
+anchor 在 39 個 mirror 檔裡無聲累積（2026-05 P3e 清查）。全部修好後改為
+強制驗，mirror outbound anchor 從此跟 canonical 同標準、回歸即時擋下。
 """
 
 from __future__ import annotations
@@ -25,7 +29,7 @@ from pathlib import Path
 
 # --- Config ---
 EXCLUDE_DIRS = {'.ai', 'book', 'node_modules', '.git', 'archives', '.coord'}
-EXCLUDE_PATTERNS = ['.en.md', '.zh-Hans.md']  # skip mirror files
+EXCLUDE_PATTERNS: list[str] = []  # mirror files now validated (see module docstring)
 
 # Markdown link with anchor: [text](path.md#anchor) or [text](#anchor)
 # Anchor part: starts with # then any non-) char
@@ -120,7 +124,8 @@ def parse_anchor_links(content: str, file_path: Path) -> list[tuple[int, str, st
 
 
 def should_skip(path: Path) -> bool:
-    """Skip excluded dirs and mirror files."""
+    """Skip excluded dirs. Mirror files are validated (EXCLUDE_PATTERNS
+    is empty by default; kept as a hook if a pattern ever needs re-adding)."""
     if any(part in EXCLUDE_DIRS for part in path.parts):
         return True
     for pat in EXCLUDE_PATTERNS:
