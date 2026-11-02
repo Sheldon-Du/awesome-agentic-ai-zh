@@ -25,7 +25,7 @@
 
 ## 📚 必修阅读
 
-1. [**anthropics/prompt-eng-interactive-tutorial**](https://github.com/anthropics/prompt-eng-interactive-tutorial) ⭐⭐⭐⭐⭐ ★ 35k+ — **Anthropic 官方互动教程**、9 章 Jupyter notebook（basic / intermediate / advanced + appendix），含 playground 跟 answer key。用 Claude 3 Haiku（最便宜）跑得起来、**Stage 2 的 canonical 动手教材**。也是 [**anthropics/courses**](https://github.com/anthropics/courses) 5 course umbrella 的 module 2，想看更广（含 API Fundamentals / Real World Prompting / Eval / Tool Use）直接看 umbrella
+1. [**anthropics/prompt-eng-interactive-tutorial**](https://github.com/anthropics/prompt-eng-interactive-tutorial) ⭐⭐⭐⭐⭐ ★ 38k+ — **Anthropic 官方互动教程**、9 章 Jupyter notebook（basic / intermediate / advanced + appendix），含 playground 跟 answer key。用 Claude 3 Haiku（最便宜）跑得起来、**Stage 2 的 canonical 动手教材**。也是 [**anthropics/courses**](https://github.com/anthropics/courses) 5 course umbrella 的 module 2，想看更广（含 API Fundamentals / Real World Prompting / Eval / Tool Use）直接看 umbrella
 2. [**anthropics/courses — Real World Prompting**](https://github.com/anthropics/courses) ⭐⭐⭐⭐ ★ 21k+ — 同 umbrella 的 module 3，**“真实情境下怎么用 prompting”**：chatbot / legal / financial / coding 案例 walk-through。看完 #1 再来看 #2
 3. [**Anthropic Prompt Engineering Guide**](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview) — 官方 docs、配合上面 #1 一起读
 3. [**OpenAI Prompt Engineering**](https://platform.openai.com/docs/guides/prompt-engineering) — OpenAI 观点
@@ -549,8 +549,8 @@ LLM-powered system 的工程实践可以拆成 **3 层 stack**。这不是 1 次
 
 延伸阅读（不必修、未来想深挖时看）：
 
-- [`Meirtz/Awesome-Context-Engineering`](https://github.com/Meirtz/Awesome-Context-Engineering)（★ 3k+）——从 prompt engineering 一路推到 production agent 的 survey
-- [`Windy3f3f3f3f/how-claude-code-works`](https://github.com/Windy3f3f3f3f/how-claude-code-works)（★ 2.4k+）——Claude Code 内部解析，含 context engineering 章节
+- [`Meirtz/Awesome-Context-Engineering`](https://github.com/Meirtz/Awesome-Context-Engineering)（★ 3.3k+）——从 prompt engineering 一路推到 production agent 的 survey
+- [`Windy3f3f3f3f/how-claude-code-works`](https://github.com/Windy3f3f3f3f/how-claude-code-works)（★ 3.8k+）——Claude Code 内部解析，含 context engineering 章节
 
 ## ✅ 进 Stage 3 前的自我检查
 

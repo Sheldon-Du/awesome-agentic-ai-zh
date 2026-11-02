@@ -26,7 +26,7 @@ You should already:
 
 ## 📚 Required Reading
 
-1. [**anthropics/prompt-eng-interactive-tutorial**](https://github.com/anthropics/prompt-eng-interactive-tutorial) ⭐⭐⭐⭐⭐ ★ 35k+ — **Anthropic's official interactive tutorial**, 9 chapters of Jupyter notebooks (basic / intermediate / advanced + appendix), with playground and answer key. Runs on Claude 3 Haiku (cheapest). **The canonical hands-on resource for Stage 2.** Also packaged as module 2 of the [**anthropics/courses**](https://github.com/anthropics/courses) 5-course umbrella — for broader coverage (API Fundamentals / Real World Prompting / Eval / Tool Use) go straight to the umbrella
+1. [**anthropics/prompt-eng-interactive-tutorial**](https://github.com/anthropics/prompt-eng-interactive-tutorial) ⭐⭐⭐⭐⭐ ★ 38k+ — **Anthropic's official interactive tutorial**, 9 chapters of Jupyter notebooks (basic / intermediate / advanced + appendix), with playground and answer key. Runs on Claude 3 Haiku (cheapest). **The canonical hands-on resource for Stage 2.** Also packaged as module 2 of the [**anthropics/courses**](https://github.com/anthropics/courses) 5-course umbrella — for broader coverage (API Fundamentals / Real World Prompting / Eval / Tool Use) go straight to the umbrella
 2. [**anthropics/courses — Real World Prompting**](https://github.com/anthropics/courses) ⭐⭐⭐⭐ ★ 21k+ — Module 3 of the same umbrella, **"how to actually use prompting in real situations"**: chatbot / legal / financial / coding case walkthroughs. Read #1 first, then this.
 3. [**Anthropic Prompt Engineering Guide**](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview) — official docs, pairs with #1
 3. [**OpenAI Prompt Engineering**](https://platform.openai.com/docs/guides/prompt-engineering) — OpenAI's perspective
@@ -534,8 +534,8 @@ Engineering practice for LLM-powered systems can be divided into **three stack l
 
 Further reading (optional, for when you want to dig deeper):
 
-- [`Meirtz/Awesome-Context-Engineering`](https://github.com/Meirtz/Awesome-Context-Engineering) (★ 3k+) — comprehensive survey from prompt engineering to production agents
-- [`Windy3f3f3f3f/how-claude-code-works`](https://github.com/Windy3f3f3f3f/how-claude-code-works) (★ 2.4k+) — Claude Code internals, includes a context-engineering chapter
+- [`Meirtz/Awesome-Context-Engineering`](https://github.com/Meirtz/Awesome-Context-Engineering) (★ 3.3k+) — comprehensive survey from prompt engineering to production agents
+- [`Windy3f3f3f3f/how-claude-code-works`](https://github.com/Windy3f3f3f3f/how-claude-code-works) (★ 3.8k+) — Claude Code internals, includes a context-engineering chapter
 
 ## ✅ Self-Check Before Stage 3
 
